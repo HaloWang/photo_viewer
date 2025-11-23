@@ -9,7 +9,9 @@ bool _isNetworkUrl(String url) {
 }
 
 bool _isPathUrl(String url) {
-  if (url.startsWith('/data')) {
+  // Check for POSIX paths (macOS, iOS, Android, Linux)
+  // They all start with "/"
+  if (!Platform.isWindows && url.startsWith('/')) {
     return true;
   }
 
